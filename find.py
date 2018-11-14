@@ -63,9 +63,9 @@ def detect_waldo_stripes(white_mask, red_mask):
                                                                 continue 
                                                 lines = lines + 1
                                                 
-                                                # if white_mask[ydown, x] == 0:
-                                                #         if red_mask[ydown, x] == 0:
-                                                #                 break
+                                                if white_mask[ydown, x] == 0:
+                                                        if red_mask[ydown, x] == 0:
+                                                                break
 
                                 if lines > 1:
                                         return True
@@ -92,7 +92,7 @@ cv2.imshow('Red Mask', red_mask)
 
 img_hls = cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
 white_mask = img_hls[:,:,1]
-white_mask = cv2.inRange(white_mask, 230, 255)
+white_mask = cv2.inRange(white_mask, 235, 255)
 
 kernel = np.ones((1,3),np.uint8)
 white_mask_eroded = cv2.erode(white_mask, kernel,iterations = 1)
